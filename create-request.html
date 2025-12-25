@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создать заявку - ОфисМаркет</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"></div>
+                    <div class="logo-text">Офис<span>Маркет</span></div>
+                </a>
+
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <nav class="nav-desktop">
+                    <a href="index.html" class="nav-item">Главная</a>
+                    <a href="requests.html" class="nav-item">Мои заявки</a>
+                    <a href="create-request.html" class="nav-item active">Создать заявку</a>
+                    <a href="profile.html" class="nav-item">Личный кабинет</a>
+                </nav>
+
+                <div class="nav-actions">
+                    <div class="user-menu">
+                        <div class="user-btn">
+                            <i class="fas fa-user user-icon"></i>
+                            <span id="userNameCreate">Гость</span>
+                            <i class="fas fa-chevron-down" style="font-size: 12px;"></i>
+                        </div>
+                        <div class="user-dropdown">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-mobile" id="mobileMenu">
+            <button class="nav-mobile-close" id="mobileMenuClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <ul class="nav-mobile-list">
+                <li><a href="index.html" class="nav-mobile-item">Главная</a></li>
+                <li><a href="requests.html" class="nav-mobile-item">Мои заявки</a></li>
+                <li><a href="create-request.html" class="nav-mobile-item active">Создать заявку</a></li>
+                <li><a href="profile.html" class="nav-mobile-item">Личный кабинет</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notificationText">Сообщение</span>
+    </div>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                    <h2>Создание новой заявки</h2>
+                    <a href="requests.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-left"></i> К списку заявок
+                    </a>
+                </div>
+                
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <div style="background-color: var(--secondary-color); padding: 30px; border-radius: var(--border-radius); box-shadow: var(--shadow);">
+                        <form id="createRequestForm">
+                            <div class="form-group">
+                                <label for="title" class="form-label">Название заявки *</label>
+                                <input type="text" id="title" class="form-control" required 
+                                       placeholder="Краткое описание проблемы">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="category" class="form-label">Категория *</label>
+                                <select id="category" class="form-control" required>
+                                    <option value="">Выберите категорию</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="description" class="form-label">Описание проблемы *</label>
+                                <textarea id="description" class="form-control" required 
+                                          placeholder="Подробно опишите проблему, с которой вы столкнулись"></textarea>
+                            </div>
+                            
+                            <div style="margin-top: 30px; display: flex; gap: 15px;">
+                                <button type="submit" class="btn">
+                                    <i class="fas fa-paper-plane"></i> Создать заявку
+                                </button>
+                                <button type="reset" class="btn btn-outline">
+                                    <i class="fas fa-times"></i> Очистить форму
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div style="margin-top: 30px; padding: 20px; background-color: #f0f7ff; border-radius: var(--border-radius); border-left: 4px solid #4dabf7;">
+                        <h4><i class="fas fa-info-circle" style="color: #4dabf7;"></i> Как правильно оформить заявку?</h4>
+                        <ul style="margin-top: 10px; padding-left: 20px;">
+                            <li>Указывайте точное название оборудования или предмета</li>
+                            <li>Подробно опишите проблему или что именно требуется</li>
+                            <li>Укажите местонахождение (кабинет, этаж, отдел)</li>
+                            <li>При необходимости укажите срочность выполнения</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <div class="logo-icon" style="width: 35px; height: 35px;"></div>
+                        <div class="footer-logo-text">Офис<span>Маркет</span></div>
+                    </div>
+                    <p class="footer-description">Все для современного офиса. Более 5000 товаров с доставкой по всей России.</p>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Навигация</h4>
+                    <div class="footer-links">
+                        <a href="index.html" class="footer-link">Главная</a>
+                        <a href="requests.html" class="footer-link">Мои заявки</a>
+                        <a href="create-request.html" class="footer-link">Создать заявку</a>
+                        <a href="profile.html" class="footer-link">Личный кабинет</a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Контакты</h4>
+                    <div class="footer-contact">
+                        <div class="footer-contact-item">
+                            <i class="fas fa-phone footer-contact-icon"></i>
+                            <span>+7 (888) 888-88-88</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-envelope footer-contact-icon"></i>
+                            <span>nagoevmarat01@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 ОфисМаркет. Все права защищены.</p>
+                <p>Сайт разработан в учебных целях</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/requests.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userData = localStorage.getItem('userData');
+            
+            if (userData) {
+                const user = JSON.parse(userData);
+                document.getElementById('userNameCreate').textContent = user.fullName || user.login;
+            }
+        });
+    </script>
+    <script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/requests.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const userData = localStorage.getItem('userData');
+        
+        if (userData) {
+            const user = JSON.parse(userData);
+            document.getElementById('userNameCreate').textContent = user.fullName || user.login;
+        }
+    });
+</script>
+</body>
+</html>

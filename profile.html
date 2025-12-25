@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет - ОфисМаркет</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"></div>
+                    <div class="logo-text">Офис<span>Маркет</span></div>
+                </a>
+
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <nav class="nav-desktop">
+                    <a href="index.html" class="nav-item">Главная</a>
+                    <a href="requests.html" class="nav-item">Мои заявки</a>
+                    <a href="create-request.html" class="nav-item">Создать заявку</a>
+                    <a href="profile.html" class="nav-item active">Личный кабинет</a>
+                </nav>
+
+                <div class="nav-actions">
+                    <div class="user-menu">
+                        <div class="user-btn">
+                            <i class="fas fa-user user-icon"></i>
+                            <span id="userName">Гость</span>
+                            <i class="fas fa-chevron-down" style="font-size: 12px;"></i>
+                        </div>
+                        <div class="user-dropdown">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-mobile" id="mobileMenu">
+            <button class="nav-mobile-close" id="mobileMenuClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <ul class="nav-mobile-list">
+                <li><a href="index.html" class="nav-mobile-item">Главная</a></li>
+                <li><a href="requests.html" class="nav-mobile-item">Мои заявки</a></li>
+                <li><a href="create-request.html" class="nav-mobile-item">Создать заявку</a></li>
+                <li><a href="profile.html" class="nav-mobile-item active">Личный кабинет</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notificationText">Сообщение</span>
+    </div>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <h2>Личный кабинет</h2>
+                
+                <div class="profile-info" style="background-color: var(--secondary-color); padding: 30px; border-radius: var(--border-radius); box-shadow: var(--shadow);">
+                    <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 30px;">
+                        <div style="width: 80px; height: 80px; background-color: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 30px;">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <h3 id="profileFullName">ФИО пользователя</h3>
+                            <p id="profileRole">Роль: Загрузка...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-details" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                        <div>
+                            <h4>Контактная информация</h4>
+                            <div style="margin-top: 15px;">
+                                <p><strong>Логин:</strong> <span id="profileLogin">-</span></p>
+                                <p><strong>Email:</strong> <span id="profileEmail">-</span></p>
+                                <p><strong>Дата регистрации:</strong> <span id="profileDate">-</span></p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4>Статистика заявок</h4>
+                            <div style="margin-top: 15px;">
+                                <p><strong>Всего заявок:</strong> <span id="totalRequests">0</span></p>
+                                <p><strong>Новых:</strong> <span id="newRequests">0</span></p>
+                                <p><strong>Решенных:</strong> <span id="solvedRequests">0</span></p>
+                                <p><strong>Отклоненных:</strong> <span id="rejectedRequests">0</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 30px; display: flex; gap: 15px; flex-wrap: wrap;">
+                        <a href="create-request.html" class="btn">
+                            <i class="fas fa-plus"></i> Создать новую заявку
+                        </a>
+                        <a href="requests.html" class="btn btn-outline">
+                            <i class="fas fa-list"></i> Все мои заявки
+                        </a>
+                        <button class="btn btn-outline" id="logoutBtnProfile">
+                            <i class="fas fa-sign-out-alt"></i> Выйти
+                        </button>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 40px;">
+                    <h3>Последние заявки</h3>
+                    
+                    <div id="recentRequests" style="margin-top: 20px;">
+                        <!-- Будет заполнено через JS -->
+                        <div class="empty-state" id="recentEmptyState">
+                            <div class="empty-state-icon">
+                                <i class="fas fa-inbox"></i>
+                            </div>
+                            <h4>Нет заявок</h4>
+                            <p>У вас пока нет созданных заявок</p>
+                            <a href="create-request.html" class="btn" style="margin-top: 15px;">Создать первую заявку</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <div class="logo-icon" style="width: 35px; height: 35px;"></div>
+                        <div class="footer-logo-text">Офис<span>Маркет</span></div>
+                    </div>
+                    <p class="footer-description">Все для современного офиса. Более 5000 товаров с доставкой по всей России.</p>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Навигация</h4>
+                    <div class="footer-links">
+                        <a href="index.html" class="footer-link">Главная</a>
+                        <a href="requests.html" class="footer-link">Мои заявки</a>
+                        <a href="create-request.html" class="footer-link">Создать заявку</a>
+                        <a href="profile.html" class="footer-link">Личный кабинет</a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Контакты</h4>
+                    <div class="footer-contact">
+                        <div class="footer-contact-item">
+                            <i class="fas fa-phone footer-contact-icon"></i>
+                            <span>+7 (888) 888-88-88</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-envelope footer-contact-icon"></i>
+                            <span>nagoevmmarat01@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 ОфисМаркет. Все права защищены.</p>
+                <p>Сайт разработан в учебных целях</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/requests.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userData = localStorage.getItem('userData');
+            
+            if (!userData) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            const user = JSON.parse(userData);
+            
+            document.getElementById('profileFullName').textContent = user.fullName || user.login;
+            document.getElementById('profileLogin').textContent = user.login;
+            document.getElementById('profileEmail').textContent = user.email || 'Не указан';
+            document.getElementById('profileRole').textContent = `Роль: ${user.role === 'admin' ? 'Администратор' : 'Пользователь'}`;
+            document.getElementById('userName').textContent = user.fullName || user.login;
+            document.getElementById('profileDate').textContent = new Date().toLocaleDateString('ru-RU');
+            
+            const userRequests = mockRequests.filter(request => request.userId === user.login);
+            document.getElementById('totalRequests').textContent = userRequests.length;
+            document.getElementById('newRequests').textContent = userRequests.filter(r => r.status === 'Новая').length;
+            document.getElementById('solvedRequests').textContent = userRequests.filter(r => r.status === 'Решена').length;
+            document.getElementById('rejectedRequests').textContent = userRequests.filter(r => r.status === 'Отклонена').length;
+            
+            const recentRequests = userRequests.slice(0, 3);
+            const recentContainer = document.getElementById('recentRequests');
+            const emptyState = document.getElementById('recentEmptyState');
+            
+            if (recentRequests.length > 0) {
+                emptyState.style.display = 'none';
+                
+                let html = '';
+                recentRequests.forEach(request => {
+                    html += `
+                        <div class="request-card">
+                            <div class="request-header">
+                                <div class="request-title">${request.title}</div>
+                                <span class="status status-${request.status.toLowerCase()}">${request.status}</span>
+                            </div>
+                            <div class="request-body">
+                                <div class="request-category">${request.category}</div>
+                                <p>${request.description.substring(0, 100)}${request.description.length > 100 ? '...' : ''}</p>
+                                <div class="request-date">Создано: ${request.createdAt}</div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                recentContainer.innerHTML = html;
+            }
+            
+            document.getElementById('logoutBtnProfile').addEventListener('click', function() {
+                localStorage.removeItem('userData');
+                window.location.href = 'index.html';
+            });
+        });
+    </script>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const userData = localStorage.getItem('userData');
+        
+        if (!userData) {
+            window.location.href = 'login.html';
+            return;
+        }
+        
+        const user = JSON.parse(userData);
+        
+        document.getElementById('profileFullName').textContent = user.fullName || user.login;
+        document.getElementById('profileLogin').textContent = user.login;
+        document.getElementById('profileEmail').textContent = user.email || 'Не указан';
+        document.getElementById('profileRole').textContent = `Роль: ${user.role === 'admin' ? 'Администратор' : 'Пользователь'}`;
+        document.getElementById('userName').textContent = user.fullName || user.login;
+        document.getElementById('profileDate').textContent = new Date().toLocaleDateString('ru-RU');
+        
+        const userRequests = DataManager.getUserRequests(user.login);
+        document.getElementById('totalRequests').textContent = userRequests.length;
+        document.getElementById('newRequests').textContent = userRequests.filter(r => r.status === 'Новая').length;
+        document.getElementById('solvedRequests').textContent = userRequests.filter(r => r.status === 'Решена').length;
+        document.getElementById('rejectedRequests').textContent = userRequests.filter(r => r.status === 'Отклонена').length;
+        
+        const recentRequests = userRequests.slice(0, 3);
+        const recentContainer = document.getElementById('recentRequests');
+        const emptyState = document.getElementById('recentEmptyState');
+        
+        if (recentRequests.length > 0) {
+            emptyState.style.display = 'none';
+            
+            let html = '';
+            recentRequests.forEach(request => {
+                html += `
+                    <div class="request-card">
+                        <div class="request-header">
+                            <div class="request-title">${request.title}</div>
+                            <span class="status status-${request.status.toLowerCase()}">${request.status}</span>
+                        </div>
+                        <div class="request-body">
+                            <div class="request-category">${request.category}</div>
+                            <p>${request.description.substring(0, 100)}${request.description.length > 100 ? '...' : ''}</p>
+                            <div class="request-date">Создано: ${request.createdAt}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            recentContainer.innerHTML = html;
+        }
+        
+        document.getElementById('logoutBtnProfile').addEventListener('click', function() {
+            localStorage.removeItem('userData');
+            window.location.href = 'index.html';
+        });
+    });
+</script>
+</body>
+</html>

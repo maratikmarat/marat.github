@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель - ОфисМаркет</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"></div>
+                    <div class="logo-text">Офис<span>Маркет</span></div>
+                </a>
+
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <nav class="nav-desktop">
+                    <a href="index.html" class="nav-item">Главная</a>
+                    <a href="admin.html" class="nav-item active">Админ-панель</a>
+                </nav>
+
+                <div class="nav-actions">
+                    <div class="user-menu">
+                        <div class="user-btn">
+                            <i class="fas fa-user-shield user-icon"></i>
+                            <span id="adminName">Администратор</span>
+                            <i class="fas fa-chevron-down" style="font-size: 12px;"></i>
+                        </div>
+                        <div class="user-dropdown">
+                            <a href="index.html"><i class="fas fa-home"></i> На главную</a>
+                            <a href="profile.html"><i class="fas fa-user"></i> Личный кабинет</a>
+                            <a href="#" id="adminLogoutBtn"><i class="fas fa-sign-out-alt"></i> Выйти</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       
+        <div class="nav-mobile" id="mobileMenu">
+            <button class="nav-mobile-close" id="mobileMenuClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <ul class="nav-mobile-list">
+                <li><a href="index.html" class="nav-mobile-item">Главная</a></li>
+                <li><a href="admin.html" class="nav-mobile-item active">Админ-панель</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notificationText">Сообщение</span>
+    </div>
+
+    <main>
+        <div class="admin-layout">
+            <aside class="admin-sidebar">
+                <nav class="admin-nav">
+                    <a href="#dashboard" class="admin-nav-item active" data-section="dashboard">
+                        <i class="fas fa-tachometer-alt"></i> Панель управления
+                    </a>
+                    <a href="#requests" class="admin-nav-item" data-section="requests">
+                        <i class="fas fa-list"></i> Управление заявками
+                    </a>
+                    <a href="#categories" class="admin-nav-item" data-section="categories">
+                        <i class="fas fa-tags"></i> Управление категориями
+                    </a>
+                    <a href="#users" class="admin-nav-item" data-section="users">
+                        <i class="fas fa-users"></i> Пользователи
+                    </a>
+                    <a href="index.html" class="admin-nav-item">
+                        <i class="fas fa-home"></i> На главную
+                    </a>
+                </nav>
+            </aside>
+
+            <div class="admin-content">
+                <div class="admin-nav-mobile" style="display: none;">
+                    <a href="#dashboard" class="admin-nav-item active" data-section="dashboard">
+                        <i class="fas fa-tachometer-alt"></i> Дашборд
+                    </a>
+                    <a href="#requests" class="admin-nav-item" data-section="requests">
+                        <i class="fas fa-list"></i> Заявки
+                    </a>
+                    <a href="#categories" class="admin-nav-item" data-section="categories">
+                        <i class="fas fa-tags"></i> Категории
+                    </a>
+                    <a href="#users" class="admin-nav-item" data-section="users">
+                        <i class="fas fa-users"></i> Пользователи
+                    </a>
+                </div>
+
+                <div id="dashboardSection" class="admin-section">
+                    <h2>Панель управления</h2>
+                    <p>Добро пожаловать в админ-панель сайта ОфисМаркет</p>
+                    
+                    <div class="stats-cards">
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalCount">0</div>
+                            <div class="stat-label">Всего заявок</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="newCount">0</div>
+                            <div class="stat-label">Новых заявок</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="solvedCount">0</div>
+                            <div class="stat-label">Решенных</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="rejectedCount">0</div>
+                            <div class="stat-label">Отклоненных</div>
+                        </div>
+                    </div>
+                    
+                    <h3 style="margin-top: 40px;">Быстрые действия</h3>
+                    <div class="admin-actions">
+                        <a href="#requests" class="btn" data-section="requests">
+                            <i class="fas fa-list"></i> Управление заявками
+                        </a>
+                        <a href="#categories" class="btn btn-outline" data-section="categories">
+                            <i class="fas fa-tags"></i> Управление категориями
+                        </a>
+                    </div>
+                </div>
+
+                <div id="requestsSection" class="admin-section" style="display: none;">
+                    <h2>Управление заявками</h2>
+                    
+                    <div class="filters">
+                        <div class="filter-group">
+                            <label class="filter-label">Фильтр по статусу:</label>
+                            <select id="adminStatusFilter" class="form-control" style="width: auto; min-width: 150px;">
+                                <option value="all">Все заявки</option>
+                                <option value="Новая">Только новые</option>
+                                <option value="Решена">Только решенные</option>
+                                <option value="Отклонена">Только отклоненные</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div id="adminRequestsContainer">
+                    </div>
+                    
+                    <div class="empty-state" id="adminEmptyState" style="display: none;">
+                        <div class="empty-state-icon">
+                            <i class="fas fa-inbox"></i>
+                        </div>
+                        <h4>Нет заявок</h4>
+                        <p>На данный момент заявок нет</p>
+                    </div>
+                </div>
+
+                <div id="categoriesSection" class="admin-section" style="display: none;">
+                    <h2>Управление категориями</h2>
+                    
+                    <div class="category-form">
+                        <h4>Добавить новую категорию</h4>
+                        <form id="addCategoryForm">
+                            <div class="form-group">
+                                <label for="newCategoryName" class="form-label">Название категории</label>
+                                <div style="display: flex; gap: 10px;">
+                                    <input type="text" id="newCategoryName" class="form-control" 
+                                           placeholder="Введите название категории">
+                                    <button type="submit" class="btn">Добавить</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <h4>Существующие категории</h4>
+                    <div id="categoriesContainer" style="margin-top: 20px;">
+                    </div>
+                    
+                    <div style="margin-top: 30px; padding: 20px; background-color: #fff3cd; border-radius: var(--border-radius); border-left: 4px solid #ffc107;">
+                        <h4><i class="fas fa-exclamation-triangle" style="color: #ffc107;"></i> Важно!</h4>
+                        <p>Категорию можно удалить только если нет заявок с этой категорией.</p>
+                    </div>
+                </div>
+
+                <div id="usersSection" class="admin-section" style="display: none;">
+                    <h2>Управление пользователями</h2>
+                    
+                    <div style="background-color: var(--secondary-color); padding: 30px; border-radius: var(--border-radius); box-shadow: var(--shadow);">
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Логин</th>
+                                        <th>ФИО</th>
+                                        <th>Email</th>
+                                        <th>Роль</th>
+                                        <th>Кол-во заявок</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>admin</td>
+                                        <td>Администратор Системы</td>
+                                        <td>admin@officemarket.ru</td>
+                                        <td><span class="status status-new" style="background-color: #d32f2f; color: white;">Администратор</span></td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ivanov</td>
+                                        <td>Иванов Иван Иванович</td>
+                                        <td>ivanov@example.com</td>
+                                        <td><span class="status status-solved">Пользователь</span></td>
+                                        <td>3</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 30px; padding: 20px; background-color: #e7f3ff; border-radius: var(--border-radius);">
+                        <h4><i class="fas fa-info-circle" style="color: #4dabf7;"></i> Информация</h4>
+                        <p>В демо-версии функционал управления пользователями ограничен. В реальной системе здесь была бы возможность:</p>
+                        <ul style="margin-top: 10px; padding-left: 20px;">
+                            <li>Добавление/удаление пользователей</li>
+                            <li>Изменение ролей пользователей</li>
+                            <li>Блокировка/разблокировка аккаунтов</li>
+                            <li>Просмотр истории действий</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <div class="logo-icon" style="width: 35px; height: 35px;"></div>
+                        <div class="footer-logo-text">Офис<span>Маркет</span></div>
+                    </div>
+                    <p class="footer-description">Все для современного офиса. Более 5000 товаров с доставкой по всей России.</p>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Навигация</h4>
+                    <div class="footer-links">
+                        <a href="index.html" class="footer-link">Главная</a>
+                        <a href="admin.html" class="footer-link">Админ-панель</a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Контакты</h4>
+                    <div class="footer-contact">
+                        <div class="footer-contact-item">
+                            <i class="fas fa-phone footer-contact-icon"></i>
+                            <span>+7 (988) 988-88-88</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-envelope footer-contact-icon"></i>
+                            <span>nagoevmarat01@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 ОфисМаркет. Все права защищены.</p>
+                <p>Сайт разработан в учебных целях</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const adminNavItems = document.querySelectorAll('.admin-nav-item[data-section]');
+            const adminSections = document.querySelectorAll('.admin-section');
+            
+            if (adminSections.length > 0) {
+                adminSections.forEach((section, index) => {
+                    section.style.display = index === 0 ? 'block' : 'none';
+                });
+            }
+            
+            adminNavItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const sectionId = this.getAttribute('data-section');
+                    
+                    adminSections.forEach(section => {
+                        section.style.display = 'none';
+                    });
+                    
+                    const targetSection = document.getElementById(`${sectionId}Section`);
+                    if (targetSection) {
+                        targetSection.style.display = 'block';
+                    }
+                    
+                    adminNavItems.forEach(navItem => {
+                        navItem.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                });
+            });
+            <!-- В разделе статистики -->
+<div class="stats-cards">
+    <div class="stat-card">
+        <div class="stat-number" id="totalCount">0</div>
+        <div class="stat-label">Всего заявок</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-number" id="newCount">0</div>
+        <div class="stat-label">Новых заявок</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-number" id="solvedCount">0</div>
+        <div class="stat-label">Решенных</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-number" id="rejectedCount">0</div>
+        <div class="stat-label">Отклоненных</div>
+    </div>
+</div>
+
+<!-- В разделе заявок -->
+<select id="adminStatusFilter" class="form-control" style="width: auto; min-width: 150px;">
+    <option value="all">Все заявки</option>
+    <option value="Новая">Только новые</option>
+    <option value="Решена">Только решенные</option>
+    <option value="Отклонена">Только отклоненные</option>
+</select>
+
+<div id="adminRequestsContainer">
+    <!-- Заявки будут здесь -->
+</div>
+
+<div class="empty-state" id="adminEmptyState" style="display: none;">
+    <div class="empty-state-icon">
+        <i class="fas fa-inbox"></i>
+    </div>
+    <h4>Нет заявок</h4>
+    <p>На данный момент заявок нет</p>
+</div>
+
+<!-- В разделе категорий -->
+<form id="addCategoryForm">
+    <input type="text" id="newCategoryName" class="form-control" placeholder="Введите название категории">
+</form>
+
+<div id="categoriesContainer">
+    <!-- Категории будут здесь -->
+</div>
+            document.querySelectorAll('[data-section]').forEach(btn => {
+                if (btn.tagName === 'A' && btn.getAttribute('href')?.startsWith('#')) {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const sectionId = this.getAttribute('data-section');
+                        
+                        adminNavItems.forEach(item => {
+                            if (item.getAttribute('data-section') === sectionId) {
+                                item.click();
+                            }
+                        });
+                    });
+                }
+            });
+            
+            document.getElementById('adminLogoutBtn')?.addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.removeItem('userData');
+                window.location.href = 'index.html';
+            });
+            
+            if (window.innerWidth <= 768) {
+                const mobileNav = document.querySelector('.admin-nav-mobile');
+                if (mobileNav) {
+                    mobileNav.style.display = 'flex';
+                    
+                    const mobileItems = mobileNav.querySelectorAll('.admin-nav-item');
+                    mobileItems.forEach((item, index) => {
+                        item.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            adminNavItems[index].click();
+                        });
+                    });
+                }
+            }
+        });
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/admin.js"></script>
+    </script>
+</body>
+</html>

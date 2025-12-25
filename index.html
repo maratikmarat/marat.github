@@ -1,0 +1,1297 @@
+ 	<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ОфисМаркет - товары для офиса</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        
+        :root {
+            --primary-color: #d32f2f;
+            --primary-dark: #b71c1c;
+            --primary-light: #ff6659;
+            --secondary-color: #ffffff;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --background-light: #f9f9f9;
+            --border-color: #e0e0e0;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+            --element-height: 50px;
+            --button-height: 48px;
+            --border-radius: 4px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--secondary-color);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 0 24px;
+            height: var(--button-height);
+            line-height: var(--button-height);
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        h2 {
+            font-size: 28px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        h3 {
+            font-size: 22px;
+        }
+
+        h4 {
+            font-size: 18px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-center h2:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section {
+            padding: 60px 0;
+        }
+
+        .section-light {
+            background-color: var(--background-light);
+        }
+
+        /* Шапка сайта */
+        .header {
+            background-color: var(--secondary-color);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            height: var(--element-height);
+        }
+
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            height: var(--element-height);
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background-color: var(--primary-color);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-icon:before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 30px;
+            background-color: var(--secondary-color);
+            border-radius: 4px;
+            transform: rotate(45deg);
+        }
+
+        .logo-icon:after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            border: 3px solid var(--secondary-color);
+            border-radius: 50%;
+            top: 5px;
+            left: 10px;
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .logo-text span {
+            color: var(--text-dark);
+        }
+
+        /* Навигация */
+        .nav-desktop {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-item {
+            font-weight: 500;
+            font-size: 16px;
+            padding: 8px 0;
+            position: relative;
+            color: var(--text-dark);
+            height: var(--element-height);
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-item:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-item:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-item:hover:after {
+            width: 100%;
+        }
+
+        .nav-item.active {
+            color: var(--primary-color);
+        }
+
+        .nav-item.active:after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-menu {
+            position: relative;
+        }
+
+        .user-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dark);
+            font-weight: 500;
+            cursor: pointer;
+            height: var(--element-height);
+        }
+
+        .user-btn:hover {
+            color: var(--primary-color);
+        }
+
+        .user-icon {
+            font-size: 18px;
+        }
+
+        .user-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: var(--secondary-color);
+            box-shadow: var(--shadow);
+            border-radius: var(--border-radius);
+            min-width: 200px;
+            padding: 10px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+        }
+
+        .user-menu:hover .user-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .user-dropdown a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--text-dark);
+        }
+
+        .user-dropdown a:hover {
+            background-color: var(--background-light);
+            color: var(--primary-color);
+        }
+
+        .cart-icon {
+            position: relative;
+            font-size: 20px;
+            color: var(--primary-color);
+            height: var(--element-height);
+            display: flex;
+            align-items: center;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: 5px;
+            right: -8px;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            font-size: 12px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+       
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--primary-color);
+            cursor: pointer;
+            height: var(--element-height);
+            align-items: center;
+        }
+
+        .nav-mobile {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .nav-mobile.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .nav-mobile-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: var(--secondary-color);
+            cursor: pointer;
+        }
+
+        .nav-mobile-list {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-mobile-item {
+            font-size: 24px;
+            color: var(--secondary-color);
+            font-weight: 500;
+            padding: 10px 0;
+        }
+
+        .nav-mobile-item:hover {
+            color: var(--primary-light);
+        }
+
+        
+        .hero {
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f9f9f9"/><path d="M0,0 L100,100 M100,0 L0,100" stroke="%23d32f2f" stroke-width="0.5"/></svg>');
+            padding: 80px 0;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-title {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .hero-title span {
+            color: var(--primary-color);
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+
+        .hero-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        
+        .visitor-counter {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin-top: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .counter-number {
+            font-size: 48px;
+            font-weight: 700;
+            margin: 10px 0;
+            transition: var(--transition);
+        }
+
+        .counter-label {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+       
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .news-card {
+            background-color: var(--secondary-color);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .news-image-container {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .news-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .news-card:hover .news-image {
+            transform: scale(1.05);
+        }
+
+        .news-image-zoom {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .news-card:hover .news-image-zoom {
+            opacity: 1;
+        }
+
+        .news-info {
+            padding: 20px;
+        }
+
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .news-category {
+            background-color: var(--primary-light);
+            color: var(--secondary-color);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+
+        .news-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            height: 50px;
+            overflow: hidden;
+        }
+
+       
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .category-card {
+            background-color: var(--secondary-color);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-icon {
+            height: 150px;
+            background-color: var(--background-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: var(--primary-color);
+        }
+
+        .category-info {
+            padding: 20px;
+        }
+
+        .category-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .category-link {
+            color: var(--primary-color);
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .category-link:hover {
+            gap: 10px;
+        }
+
+        
+        .footer {
+            background-color: var(--text-dark);
+            color: var(--secondary-color);
+            padding: 40px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .footer-logo-text span {
+            color: var(--primary-light);
+        }
+
+        .footer-description {
+            color: #aaaaaa;
+            margin-bottom: 20px;
+        }
+
+        .footer-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-title:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-link {
+            color: #aaaaaa;
+            transition: var(--transition);
+        }
+
+        .footer-link:hover {
+            color: var(--primary-light);
+            padding-left: 5px;
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            color: #aaaaaa;
+        }
+
+        .footer-contact-icon {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444444;
+            padding-top: 20px;
+            text-align: center;
+            color: #aaaaaa;
+            font-size: 14px;
+        }
+
+        
+        @media (max-width: 1199px) {
+            .container {
+                max-width: 100%;
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 10px 0;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .nav-desktop {
+                display: none;
+            }
+
+            .nav-mobile {
+                display: flex;
+            }
+
+            .user-dropdown {
+                display: none;
+            }
+
+            .user-btn span {
+                display: none;
+            }
+
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-title {
+                font-size: 28px;
+            }
+
+            .hero-description {
+                font-size: 16px;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            .section {
+                padding: 40px 0;
+            }
+
+            .categories-grid,
+            .news-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .counter-number {
+                font-size: 36px;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1199px) {
+            .categories-grid,
+            .news-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .categories-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .news-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 15px 25px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 3000;
+            transform: translateX(100%);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .notification.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .notification.error {
+            background-color: #ff4444;
+        }
+
+        .notification.success {
+            background-color: #00C851;
+        }
+
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .form-control {
+            width: 100%;
+            height: var(--element-height);
+            padding: 0 15px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
+        }
+
+        .form-control.error {
+            border-color: #ff4444;
+        }
+
+        .error-message {
+            color: #ff4444;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+               
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"></div>
+                    <div class="logo-text">Офис<span>Маркет</span></div>
+                </a>
+
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                
+                <nav class="nav-desktop">
+                    <a href="index.html" class="nav-item active">Главная</a>
+                    <a href="requests.html" class="nav-item">Мои заявки</a>
+                    <a href="create-request.html" class="nav-item">Создать заявку</a>
+                    <a href="profile.html" class="nav-item">Личный кабинет</a>
+                </nav>
+
+                
+                <div class="nav-actions">
+                    <div class="user-menu">
+                        <div class="user-btn">
+                            <i class="fas fa-user user-icon"></i>
+                            <span>Гость</span>
+                            <i class="fas fa-chevron-down" style="font-size: 12px;"></i>
+                        </div>
+                        <div class="user-dropdown">
+                            <a href="login.html"><i class="fas fa-sign-in-alt"></i> Войти</a>
+                            <a href="register.html"><i class="fas fa-user-plus"></i> Регистрация</a>
+                            <a href="admin.html" class="admin-link" style="display: none;"><i class="fas fa-cog"></i> Админ-панель</a>
+                        </div>
+                    </div>
+                    <a href="#" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+       
+        <div class="nav-mobile" id="mobileMenu">
+            <button class="nav-mobile-close" id="mobileMenuClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <ul class="nav-mobile-list">
+                <li><a href="index.html" class="nav-mobile-item active">Главная</a></li>
+                <li><a href="requests.html" class="nav-mobile-item">Мои заявки</a></li>
+                <li><a href="create-request.html" class="nav-mobile-item">Создать заявку</a></li>
+                <li><a href="login.html" class="nav-mobile-item">Войти</a></li>
+                <li><a href="register.html" class="nav-mobile-item">Регистрация</a></li>
+            </ul>
+        </div>
+    </header>
+
+   
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notificationText">Сообщение</span>
+    </div>
+
+    
+    <main>
+        
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="hero-title">Всё для вашего <span>офиса</span> в одном месте</h1>
+                        <p class="hero-description">Канцелярия, мебель, техника и расходные материалы с доставкой. Более 5000 товаров для комфортной работы.</p>
+                        <div class="hero-actions">
+                            <a href="#catalog" class="btn">Каталог товаров</a>
+                            <a href="create-request.html" class="btn btn-outline">Создать заявку</a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        
+                        <div style="width: 100%; height: 300px; background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 24px;">
+                            <i class="fas fa-building" style="font-size: 80px; opacity: 0.8;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="section">
+            <div class="container">
+                <div class="visitor-counter">
+                    <div class="counter-label">Посетителей на сайте</div>
+                    <div class="counter-number" id="visitorCounter">1,247</div>
+                    <div class="counter-label">Обновляется каждые 5 секунд</div>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="section section-light">
+            <div class="container">
+                <h2 class="text-center">Последние новости</h2>
+                <div class="news-grid">
+                    
+                    <div class="news-card">
+                        <div class="news-image-container">
+                            <img src="news/news1.jpg" 
+                                 alt="Новая коллекция офисной мебели" class="news-image">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='40' fill='%23d32f2f' text-anchor='middle' dy='.3em'%3EКрупный план мебели%3C/text%3E%3C/svg%3E" 
+                                 alt="Крупный план" class="news-image-zoom">
+                        </div>
+                        <div class="news-info">
+                            <div class="news-meta">
+                                <span class="news-date">15.10.2025</span>
+                                <span class="news-category">Акции</span>
+                            </div>
+                            <h3 class="news-title">Скидки на офисную мебель до 20%</h3>
+                            <p>Новая коллекция эргономичной мебели со специальными ценами для наших клиентов.</p>
+                        </div>
+                    </div>
+
+                    
+                    <div class="news-card">
+                        <div class="news-image-container">
+                            <img src="news/news2.jpg" 
+                                 alt="Канцелярские товары" class="news-image">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='40' fill='%23d32f2f' text-anchor='middle' dy='.3em'%3EКрупный план%3C/text%3E%3C/svg%3E" 
+                                 alt="Крупный план" class="news-image-zoom">
+                        </div>
+                        <div class="news-info">
+                            <div class="news-meta">
+                                <span class="news-date">12.10.2025</span>
+                                <span class="news-category">Новинки</span>
+                            </div>
+                            <h3 class="news-title">Экологичные канцелярские товары</h3>
+                            <p>Появилась новая линейка продукции из переработанных материалов.</p>
+                        </div>
+                    </div>
+
+                    
+                    <div class="news-card">
+                        <div class="news-image-container">
+                            <img src="news/news3.jpg" 
+                                 alt="Оргтехника" class="news-image">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='40' fill='%23d32f2f' text-anchor='middle' dy='.3em'%3EКрупный план%3C/text%3E%3C/svg%3E" 
+                                 alt="Крупный план" class="news-image-zoom">
+                        </div>
+                        <div class="news-info">
+                            <div class="news-meta">
+                                <span class="news-date">10.10.2025</span>
+                                <span class="news-category">Техника</span>
+                            </div>
+                            <h3 class="news-title">Обновление ассортимента оргтехники</h3>
+                            <p>В продаже появились новые модели принтеров и МФУ от ведущих брендов.</p>
+                        </div>
+                    </div>
+
+                   
+                    <div class="news-card">
+                        <div class="news-image-container">
+                            <img src="news/news4.jpg" 
+                                 alt="Доставка" class="news-image">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='40' fill='%23d32f2f' text-anchor='middle' dy='.3em'%3EКрупный план%3C/text%3E%3C/svg%3E" 
+                                 alt="Крупный план" class="news-image-zoom">
+                        </div>
+                        <div class="news-info">
+                            <div class="news-meta">
+                                <span class="news-date">05.10.2025</span>
+                                <span class="news-category">Услуги</span>
+                            </div>
+                            <h3 class="news-title">Бесплатная доставка при заказе от 5000₽</h3>
+                            <p>Теперь мы доставляем заказы бесплатно при сумме заказа от 5000 рублей.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="section" id="catalog">
+            <div class="container">
+                <h2 class="text-center">Категории товаров</h2>
+                <div class="categories-grid">
+                    <!-- Категория 1 -->
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-chair"></i>
+                        </div>
+                        <div class="category-info">
+                            <h3 class="category-title">Офисная мебель</h3>
+                            <p>Стулья, столы, шкафы и системы хранения</p>
+                            <a href="#" class="category-link">
+                                Смотреть товары
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-print"></i>
+                        </div>
+                        <div class="category-info">
+                            <h3 class="category-title">Оргтехника</h3>
+                            <p>Принтеры, МФУ, сканеры и расходные материалы</p>
+                            <a href="#" class="category-link">
+                                Смотреть товары
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-pen-fancy"></i>
+                        </div>
+                        <div class="category-info">
+                            <h3 class="category-title">Канцелярия</h3>
+                            <p>Ручки, бумага, папки и другие канцтовары</p>
+                            <a href="#" class="category-link">
+                                Смотреть товары
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <div class="category-info">
+                            <h3 class="category-title">Компьютерная техника</h3>
+                            <p>Мониторы, клавиатуры, мыши и аксессуары</p>
+                            <a href="#" class="category-link">
+                                Смотреть товары
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <div class="logo-icon" style="width: 35px; height: 35px;"></div>
+                        <div class="footer-logo-text">Офис<span>Маркет</span></div>
+                    </div>
+                    <p class="footer-description">Все для современного офиса. Более 5000 товаров с доставкой по всей России.</p>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Навигация</h4>
+                    <div class="footer-links">
+                        <a href="index.html" class="footer-link">Главная</a>
+                        <a href="requests.html" class="footer-link">Мои заявки</a>
+                        <a href="create-request.html" class="footer-link">Создать заявку</a>
+                        <a href="login.html" class="footer-link">Войти в систему</a>
+                        <a href="register.html" class="footer-link">Регистрация</a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Контакты</h4>
+                    <div class="footer-contact">
+                        <div class="footer-contact-item">
+                            <i class="fas fa-phone footer-contact-icon"></i>
+                            <span>+7 (888) 888-88-88</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-envelope footer-contact-icon"></i>
+                            <span>nagoevmarat90@gmail.com</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-map-marker-alt footer-contact-icon"></i>
+                            <span>г.Чегем ул.Новая 12А</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 ОфисМаркет. Все права защищены.</p>
+                <p>Сайт разработан в учебных целях</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        const mobileMenuLinks = document.querySelectorAll('.nav-mobile-item');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        const visitorCounter = document.getElementById('visitorCounter');
+        let counterValue = 1247;
+
+        function updateCounter() {
+            const change = Math.floor(Math.random() * 16) - 5;
+            counterValue += change;
+            
+            const formattedValue = counterValue.toLocaleString('ru-RU');
+            
+            visitorCounter.style.transform = 'scale(1.1)';
+            visitorCounter.style.color = '#ff6659';
+            
+            setTimeout(() => {
+                visitorCounter.textContent = formattedValue;
+                visitorCounter.style.transform = 'scale(1)';
+                visitorCounter.style.color = '';
+            }, 300);
+        }
+
+        setInterval(updateCounter, 5000);
+
+        function checkAuth() {
+            const userBtn = document.querySelector('.user-btn span');
+            const adminLink = document.querySelector('.admin-link');
+            
+            const userData = localStorage.getItem('userData');
+            
+            if (userData) {
+                const user = JSON.parse(userData);
+                userBtn.textContent = user.fullName || user.login;
+                
+                if (user.login === 'admin') {
+                    adminLink.style.display = 'block';
+                }
+            }
+        }
+
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            const notificationText = document.getElementById('notificationText');
+            
+            notificationText.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.fade-in');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuth();
+            handleScrollAnimations();
+            
+            window.addEventListener('scroll', handleScrollAnimations);
+            
+            setTimeout(() => {
+                showNotification('Добро пожаловать на сайт ОфисМаркет!', 'success');
+            }, 1000);
+        });
+
+        console.log(`Разрешение экрана: ${window.innerWidth}x${window.innerHeight}`);
+    </script>
+    <script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/counter.js"></script>
+</body>
+</html>
